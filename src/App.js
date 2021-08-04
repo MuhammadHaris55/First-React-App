@@ -50,22 +50,30 @@ const Coder = (props) => {
 class App extends React.Component{
 
   state = {
-    title: "Haris"
+    title: "loading"
   }
 
+//? IT EXECUTE ONLY ONE TIME imediatly after our DOM  
   componentDidMount(){
     fetch('https://jsonplaceholder.typicode.com/todos')
     .then(res => res.json())
-    .then(res2 => console.log(res2))
-  }
-
-//  changeName = (name) => {
-    changeName(name) {
-    this.setState({
-      // title: "Bilal"
-      title: name
+    .then(res2 => {
+      console.log(res2)
+      this.setState({
+        title: res2[0].title
+      })
     })
   }
+  
+
+//?  STATE CONCEPT
+//  changeName = (name) => {
+  //   changeName(name) {
+  //   this.setState({
+  //     // title: "Bilal"
+  //     title: name
+  //   })
+  // }
 
   render() {
 
@@ -94,11 +102,14 @@ class App extends React.Component{
       <Coder name="MD" status="Laravel"/>
       <Coder name="Bilal" status="FIFA"/> */}
     
-{/* STATE CONCEPT */}
+{/* STATE CONCEPT
     <h1>{ this.state.title }</h1>
-    <button onClick={()=> { this.changeName("Muqtada") }}>Change Name</button>
-
+    <button onClick={()=> { this.changeName("Muqtada") }}>Change Name</button> */}
     {/* <button onClick={this.changeName.bind(this, "Muqtada") }>Change Name by arrow function</button> */}    
+
+{/* FETCHING DATA FROM REST API */}
+<h1>{ this.state.title }</h1>
+
     
     </div>
     );
